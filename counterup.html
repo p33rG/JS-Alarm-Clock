@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: black;
+        }
+
+        .card-body {
+            padding: 20%
+        }
+
+        h4 {
+            font-size: 50px;
+
+
+        }
+    </style>
+
+
+</head>
+ 
+
+
+
+<body>
+    <div class="jumbotron">
+       
+        <h1 class="text-center">Country Details</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <input type="text" name="" id="name" placeholder="Enter Country name">
+
+                <input type="submit" name="" id="search">
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div id="country"></div>
+    </div>
+    
+</body>
+
+<script>
+    const container = document.querySelector('#country');
+
+    const request = new XMLHttpRequest();
+    request.open('GET','https://restcountries.com/v3.1/name/america');
+    request.send();
+
+    request.addEventListener('load',function(){
+        const [data]= JSON.parse(this.responseText);
+        console.log(data.name.official);
+        const htmlData =`
+        <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="${data.flags.png}" alt="Card image cap">
+  <div class="card-body">
+    
+    <h1 class='card-body-title'> ${data.name.official} <span></span></h1>
+    <p class= 'card-body-ttitle'>${data.capital}</p>
+  </div>
+</div>`
+
+container.insertAdjacentHTML("afterbegin",htmlData);
+    })
+</script>
+
+<script>
+
+    const name = document.querySelector('#name');
+
+    const search =document.querySelector('#search');
+
+    const getDetails= ()=>{
+        const container = document.querySelector('#country');
+        container.innerHTML = ""; // Clear the existing content
+         const request = new XMLHttpRequest();
+        request.open('GET', 'https://restcountries.com/v3.1/name/'+name.value);
+        request.send();
+
+        request.addEventListener('load', function () {
+            const [data] = JSON.parse(this.responseText);
+            console.log(data.name.official);
+            const htmlData = `
+        <div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="${data.flags.png}" alt="Card image cap">
+  <div class="card-body">
+    
+    <h1 class='card-body-title'> ${data.name.official} <span></span></h1>
+    <p class= 'card-body-ttitle'>${data.capital}</p>
+  </div>
+</div>`
+
+            container.insertAdjacentHTML("afterbegin", htmlData);
+        })
+ 
+    }
+    search.addEventListener('click',getDetails);
+</script>
+
+</html>

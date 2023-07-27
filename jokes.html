@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: rgb(12, 65, 106);
+        }
+
+        .card-body {
+            padding: 20%
+        }
+
+        h4 {
+            font-size: 50px;
+
+
+        }
+        h3
+        {
+            text-align: center;
+            font-family: fantasy;
+            margin-top: 35px;
+            color: rgb(58, 58, 58);
+        }
+        .jokes
+        {
+            text-align: center;
+            font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            margin-top: 15px;
+            color: rgb(58, 58, 58);
+        }
+    </style>
+<style>
+    .centered {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 600px; /* Adjust the width of the div as needed */
+      height: 250px; /* Adjust the height of the div as needed */
+      background-color: #f0f0f0;
+
+      border-radius: 5px;
+      box-shadow:5px 5px 5px 5px;
+    }
+
+    input
+    {
+        text-align: center;
+ 
+        background-color: rgb(191, 197, 7);
+    }
+</style>
+
+</head>
+
+
+
+
+<body>
+     
+
+    <div class="container centered">
+        <div class="row">
+            <div class="col-md-12">
+
+                <h3 > best jokes to make your day</h3>
+                
+
+            </div>
+
+            <div class="col-md-12" >
+            
+                <h3 id="jokes"> An Awesome joke is loading...</h3>
+            
+             
+            </div>
+            <div class="col-md-12" style="text-align: center; margin-top: 20px;">
+            
+              
+            
+                <input type="submit" class="btn " id="loadJoke" value="Load New Joke">
+            
+            </div>
+
+
+        </div>
+    </div>
+
+  
+
+</body>
+<!-- <script>
+
+    //using promises 
+
+   const jokes = document.querySelector('#jokes');
+   const loadJoke =document.querySelector('#loadJoke');
+
+
+   const getJokes =() =>{
+
+    const setHeader ={
+        headers: {
+            Accept: "application/json"
+        }
+    }
+    
+    fetch('https://icanhazdadjoke.com',setHeader)
+    .then((res)=>
+            res.json()
+    ).then((data)=>{
+         jokes.innerHTML=data.joke;
+    })
+    .catch((error)=>{
+        console.log(error  )
+    })
+   };
+   loadJoke.addEventListener('click',getJokes);
+    getJokes();
+</script> -->
+
+
+<!-- using async await -->
+<script>
+
+    const jokes = document.querySelector('#jokes');
+    const loadJoke = document.querySelector('#loadJoke');
+
+
+    const getJokes = async () => {
+
+        try
+        {
+        const setHeader = {
+            headers: {
+                Accept: "application/json"
+            }
+        }
+
+      const res = await  fetch('https://icanhazdadjoke.com', setHeader);
+      const data =await  res.json();
+             jokes.innerHTML =data.joke;
+    
+}catch(err)
+{
+    console.log(`the error is ${err}`);
+}
+    };
+    loadJoke.addEventListener('click', getJokes);
+    getJokes();
+</script>
+ 
+</html>

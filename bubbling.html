@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            background: black;
+        }
+
+        .card-body {
+            padding: 20%
+        }
+
+        h4 {
+            font-size: 50px;
+
+
+        }
+
+      
+    </style>
+
+
+</head>
+
+<!-- <body>
+
+    <div class="jumbotron">
+        <div class="row">
+            <div class="col-md-12">
+                <h3 class="text-center">Event Bubbling</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div id="parent" style="height:450px; width:450px ; background-color: aqua;"> 
+                <div id="child"  style="height:350px; width:350px; background-color: aquamarine;">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const parent  =document.getElementById('parent');
+        const child = document.getElementById('child');
+
+
+        const callingChild =()=>{
+            alert ('child is being called');
+            event.stopPropagation();
+        }
+        const callParent =()=>{
+            alert('parent is being called');
+        }
+        child.addEventListener('click',callingChild);
+        parent.addEventListener('click',callParent);
+    </script>
+    </body> -->
+
+
+    <body>
+        
+        <script>
+            
+            const add = (a,b)=>{
+                return a+b;
+            }
+            const sub = (a,b)=>{
+                return a-b;
+            }
+
+            const calculator = (a,b,operator)=>{
+                return operator(a,b);
+            }
+            const x = calculator(5,4,sub);
+            console.log(x);
+        </script>
+    </body>
+</html>
